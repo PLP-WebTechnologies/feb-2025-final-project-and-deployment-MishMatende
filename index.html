@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Modern E-Commerce Store</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header>
+      <nav>
+        <h1>ShopMate</h1>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="product.html">Products</a></li>
+          <li><a href="cart.html">Cart</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="hero-content">
+          <h1>Welcome to ShopMate</h1>
+          <p>Your one-stop shop for the latest gadgets and accessories.</p>
+          <a href="products.html" class="btn-primary">Shop Now</a>
+        </div>
+      </section>
+
+      <section class="featured-products">
+        <h2>Featured Products</h2>
+        <div class="product-grid" id="homepage-product-grid">
+          <!-- Featured products will be injected here -->
+        </div>
+        <a href="products.html" class="btn-secondary">View All Products</a>
+      </section>
+
+      <section class="testimonials">
+        <h2>What Our Customers Say</h2>
+        <div class="testimonial-cards">
+          <blockquote>
+            "Amazing products and fast delivery! Highly recommend ShopMate."
+            <footer>- Sarah J.</footer>
+          </blockquote>
+          <blockquote>
+            "Great customer service and quality items. Will buy again!"
+            <footer>- Mike T.</footer>
+          </blockquote>
+          <blockquote>
+            "Awesome products and fast delivery time! Will definitely order
+            soon!"
+            <footer>- Lorine Ashika.</footer>
+          </blockquote>
+        </div>
+      </section>
+
+      <section class="newsletter">
+        <h2>Subscribe to our Newsletter</h2>
+        <p>
+          Get the latest updates and exclusive offers delivered straight to your
+          inbox.
+        </p>
+        <form id="newsletterForm">
+          <input
+            type="email"
+            id="newsletterEmail"
+            placeholder="Enter your email"
+            required
+          />
+          <button type="submit">Subscribe</button>
+        </form>
+        <p id="newsletterMessage" class="message"></p>
+      </section>
+      <a href="#" id="backToTop" title="Back to Top">
+        <i class="fas fa-arrow-up"></i>
+      </a>
+    </main>
+
+    <footer>
+      <p>&copy; 2025 ShopMate. All rights reserved.</p>
+    </footer>
+
+    <script>
+      const products = [
+        {
+          id: 1,
+          name: "Smart Watch",
+          price: 129.99,
+          image: "https://via.placeholder.com/200x150?text=Smart+Watch",
+        },
+        {
+          id: 2,
+          name: "Wireless Headphones",
+          price: 89.99,
+          image: "https://via.placeholder.com/200x150?text=Wireless+Headphones",
+        },
+        {
+          id: 3,
+          name: "Gaming Mouse",
+          price: 39.99,
+          image: "https://via.placeholder.com/200x150?text=Gaming+Mouse",
+        },
+        {
+          id: 4,
+          name: "Bluetooth Speaker",
+          price: 59.99,
+          image: "https://via.placeholder.com/200x150?text=Bluetooth+Speaker",
+        },
+      ];
+
+      const homepageGrid = document.getElementById("homepage-product-grid");
+
+      products.forEach((product) => {
+        const div = document.createElement("div");
+        div.className = "product";
+        div.innerHTML = `
+      <img src="${product.image}" alt="${product.name}" />
+      <h3>${product.name}</h3>
+      <p>$${product.price.toFixed(2)}</p>
+      <button data-id="${product.id}">Add to Cart</button>
+    `;
+
+        div.querySelector("button").addEventListener("click", () => {
+          let cart = JSON.parse(localStorage.getItem("cart")) || [];
+          cart.push(product);
+          localStorage.setItem("cart", JSON.stringify(cart));
+          alert(`${product.name} added to cart!`);
+        });
+
+        homepageGrid.appendChild(div);
+      });
+
+      const backToTopBtn = document.getElementById("backToTop");
+
+      window.onscroll = function () {
+        if (window.scrollY > 300) {
+          backToTopBtn.style.display = "block";
+        } else {
+          backToTopBtn.style.display = "none";
+        }
+      };
+
+      backToTopBtn.addEventListener("click", function (e) {
+        e.preventDefault();
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
+
+      const cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+      document
+        .getElementById("contact-form")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+          alert("Thank you for your message! We'll get back to you soon.");
+          this.reset();
+        });
+
+      const newsletterForm = document.getElementById("newsletterForm");
+      const newsletterMessage = document.getElementById("newsletterMessage");
+
+      newsletterForm.addEventListener("submit", function (e) {
+        e.preventDefault();
+
+        const emailInput = document.getElementById("newsletterEmail");
+        const email = emailInput.value.trim();
+
+        // Basic email validation pattern
+        const emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/i;
+
+        if (!emailPattern.test(email)) {
+          newsletterMessage.style.color = "#ff6347"; // red
+          newsletterMessage.textContent = "Please enter a valid email address.";
+          return;
+        }
+
+        // Here you could send the email to a backend or API
+        // For demo, just show success message:
+        newsletterMessage.style.color = "#90ee90"; // light green
+        newsletterMessage.textContent = "Thank you for subscribing!";
+
+        newsletterForm.reset();
+      });
+    </script>
+  </body>
+</html>

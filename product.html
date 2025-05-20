@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Products</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header>
+      <nav>
+        <h1>ShopMate</h1>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="product.html">Products</a></li>
+          <li><a href="cart.html">Cart</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <h1>Our Products</h1>
+
+      <!-- Search Input -->
+      <div
+        class="search-container"
+        style="text-align: center; margin-bottom: 1rem"
+      >
+        <input
+          type="text"
+          id="searchInput"
+          placeholder="Search products..."
+          style="
+            padding: 0.5rem 1rem;
+            width: 250px;
+            border-radius: 20px;
+            border: 1px solid #ccc;
+            font-size: 1rem;
+          "
+        />
+      </div>
+
+      <!-- Filter Buttons -->
+      <div
+        class="filter-buttons"
+        style="text-align: center; margin-bottom: 2rem"
+      ></div>
+
+      <!-- Product Grid -->
+      <div class="product-grid"></div>
+    </main>
+
+    <!-- Quick View Modal -->
+    <div class="modal">
+      <div class="modal-content"></div>
+    </div>
+
+    <script src="product-script.js"></script>
+  </body>
+</html>
