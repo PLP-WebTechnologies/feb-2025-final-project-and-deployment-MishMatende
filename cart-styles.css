@@ -1,0 +1,118 @@
+/* Cart page styles */
+
+main {
+  max-width: 900px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  color: #0077cc;
+}
+
+#cart-container table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+#cart-container th,
+#cart-container td {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid #ddd;
+  vertical-align: middle;
+}
+
+#cart-container th {
+  background-color: #0077cc;
+  color: white;
+  font-weight: 600;
+  text-align: left;
+}
+
+#cart-container td img {
+  border-radius: 6px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.qty-btn,
+.remove-btn {
+  background-color: transparent;
+  border: 1.5px solid #0077cc;
+  color: #0077cc;
+  border-radius: 4px;
+  padding: 0.25rem 0.5rem;
+  font-weight: 600;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.qty-btn:hover,
+.remove-btn:hover {
+  background-color: #005fa3;
+  color: white;
+  border-color: #005fa3;
+  cursor: pointer;
+}
+
+#cart-summary {
+  font-size: 1.3rem;
+  text-align: right;
+  margin-top: 1rem;
+  color: #333;
+}
+
+#clear-cart {
+  background-color: #cc0000;
+  color: white;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 6px;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+}
+
+#clear-cart:hover {
+  background-color: #990000;
+  cursor: pointer;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  #cart-container table,
+  #cart-container thead,
+  #cart-container tbody,
+  #cart-container th,
+  #cart-container td,
+  #cart-container tr {
+    display: block;
+  }
+
+  #cart-container tr {
+    margin-bottom: 1rem;
+    border-bottom: 2px solid #ddd;
+  }
+
+  #cart-container td {
+    padding-left: 50%;
+    text-align: right;
+    position: relative;
+  }
+
+  #cart-container td::before {
+    content: attr(data-label);
+    position: absolute;
+    left: 1rem;
+    width: 45%;
+    padding-left: 0.5rem;
+    font-weight: 700;
+    text-align: left;
+  }
+
+  #cart-container th {
+    display: none;
+  }
+}
